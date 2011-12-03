@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {Text, View,Button,TextInput} from 'react-native';
+import GoogleButton from './GoogleButton'
+import axios from 'axios'
 
 
 class Login extends React.Component {
@@ -11,8 +13,14 @@ class Login extends React.Component {
 		}
 	}
 	componentDidMount(){
-		
-	}
+		console.log('hel')
+		axios.get('http://localhost:5000/hello')
+		.then((data)=>{
+			console.log('hell yeah')
+			console.log(data)
+		})
+	}	
+	//minor fixs
 	handleEmail=(text)=>{
 		this.setState({email:text})
 	}
@@ -24,6 +32,7 @@ class Login extends React.Component {
 		console.log(this.props)
 		return(
 			<View>
+				{/* <GoogleButton/> */}
 				<Text>Login</Text>
 				<TextInput
 					style={{height: 40}}
@@ -38,7 +47,7 @@ class Login extends React.Component {
 					defaultValue={this.state.text}
 				/>
 				<Button
-          title="oyere"
+          title="Login"
           onPress={() => this.props.loginUser(this.state.email,this.state.password)}
         />				
 			</View>

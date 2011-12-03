@@ -13,9 +13,10 @@ const MyStack = (props) => {
     <NavigationContainer>
       <Stack.Navigator>
         {
-        props.isAuthenticated ? (
+        props.isAuthenticated==true ? (
         <>
           <Stack.Screen name="Home" component={HomeScreen} />
+
         </>
       ) : (
         <>

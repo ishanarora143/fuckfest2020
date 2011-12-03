@@ -1,15 +1,5 @@
 import { AsyncStorage } from 'react-native';
 
-const getUserId = async () => {
-    let userId = '';
-    try {
-      userId = await AsyncStorage.getItem('login') || 'none';
-    } catch (error) {
-      // Error retrieving data
-      console.log(error.message);
-    }
-    return userId;
-  }
 
 export const initialState = {
     isLoading: false,
@@ -103,6 +93,7 @@ export const signOutSuccess = () => ({
         return {
           ...state,
           isLoading: false,
+          isAuthenticated: false,
           error: true
         };
       case RESET_ERROR:
