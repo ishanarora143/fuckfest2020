@@ -3,24 +3,26 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from '../src/Home/HomeScreen';
-import Login from '../src/authentication/Login';
+import Login from '../src/authentication/LoginContainer';
 
 const Stack = createStackNavigator();
-
-const MyStack = () => {
+// const isAuthenticated = false
+const MyStack = (props) => {
+  console.log('isauthenitcaed == ',props.isAuthenticated)
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options = {{headerShown:false}}
-        />
-
-        <Stack.Screen
-          name= "Login"
-          component = {Login} 
-        />
+        {
+        props.isAuthenticated ? (
+        <>
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="Login" component={Login} />
+        </>
+      )
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );
